@@ -1,6 +1,6 @@
 # M3T-UAV: Vision-Based UAV Geolocalization in Multi-Modal, Multi-Scene and Multi-Temporal Scenarios
 
-This repository provides the **M3T-UAV dataset**, introduced in the paper *"M3T-UAV: Vision-Based UAV Geolocalization in Multi-Modal, Multi-Scene, and Multi-Temporal Scenarios"*. 
+This repository provides the **M3T-UAV dataset**, introduced in the paper *"M3T-UAV: Vision-Based UAV Geolocalization in Multi-Modal, Multi-Scene and Multi-Temporal Scenarios"*. 
 
 M3T-UAV is the first large-scale dataset specifically designed for UAV visual geolocalization under **multi-modal, multi-scene, and multi-temporal conditions**. It contains over **29,000 densely sampled and strictly registered triplets** of UAV visible images, infrared images, and satellite maps. The dataset covers **seven representative scene attributes** (city, mountain, jungle, river, lake, farmland, and coast), enabling comprehensive evaluation across diverse environments. Moreover, UAV images and satellite imagery are collected at different time periods (e.g., 2025 vs. 2022), introducing realistic **temporal variations** such as structural and environmental changes. 
 
