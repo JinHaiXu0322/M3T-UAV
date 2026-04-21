@@ -50,8 +50,7 @@ The root-level annotation files `ir.json` and `vis.json` store merged annotation
 
 The current dataset release can be downloaded via Baidu Netdisk:
 
-- **Baidu Netdisk**: [https://pan.baidu.com/s/1zyCei4UGtVl70YvFHhWtyg?pwd=3c89](https://pan.baidu.com/s/abcabcabc)
-
+- **Baidu Netdisk**: [https://pan.baidu.com/s/1_8aw2ZQ8Xg24V29aBnwV3w?pwd=shpn]
 
 ## Annotation Contents
 
