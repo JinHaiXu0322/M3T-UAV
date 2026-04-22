@@ -70,3 +70,4 @@ The dataset is intended for research on:
 ## License
 
 This dataset and codebase are for academic research use. For commercial use, please contact the authors.
+This project is heavily built upon LoFTR.
