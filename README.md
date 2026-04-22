@@ -1,101 +1,72 @@
-# M3T-UAV: Vision-Based UAV Geolocalization in Multi-Modal, Multi-Scene and Multi-Temporal Scenarios
+# M3T-UAV and LoFTDF
 
-This repository provides the **M3T-UAV dataset**, introduced in the paper *"M3T-UAV: Vision-Based UAV Geolocalization in Multi-Modal, Multi-Scene and Multi-Temporal Scenarios"*. 
-
-M3T-UAV is the first large-scale dataset specifically designed for UAV visual geolocalization under **multi-modal, multi-scene, and multi-temporal conditions**. It contains over **29,000 densely sampled and strictly registered triplets** of UAV visible images, infrared images, and satellite maps. The dataset covers **seven representative scene attributes** (city, mountain, jungle, river, lake, farmland, and coast), enabling comprehensive evaluation across diverse environments. Moreover, UAV images and satellite imagery are collected at different time periods (e.g., 2025 vs. 2022), introducing realistic **temporal variations** such as structural and environmental changes. 
-
-The present release includes the complete testing split and a partial training split. The full codebase and the complete dataset will be made publicly available after formal publication.
-
+This repository provides the **M3T-UAV dataset** and the **LoFTDF** framework for UAV visual geolocalization under multi-modal, multi-scene, and multi-temporal conditions.
 
 ## Overview
 
-- **Training set**: 28 sequences in the complete version, covering 7 scene attributes: `city`, `mountain`, `lake`, `jungle`, `coast`, `river`, and `farmland`.
-- **Testing set**: 6 sequences, also covering the same 7 scene attributes.
+Reliable UAV geolocation is critical for autonomous navigation in GNSS-denied or spoofed environments. Existing vision-based methods are often limited by single-modality data, small-scale benchmarks, and weak generalization across scene and temporal variations.
 
-## Repository Structure
+To address these challenges, this project combines:
 
-```text
-M3T-UAV/
-├── train_dataset/
-│   ├── 001/
-│   ├── 002/
-│   ├── ...
-│   ├── 006/
-│   ├── ...
-│   ├── 028/
-│   ├── ir.json
-│   └── vis.json
-├── test_dataset/
-│   ├── test01/
-│   ├── test02/
-│   ├── test03/
-│   ├── test04/
-│   ├── test05/
-│   ├── test06/
-│   ├── ir.json
-│   └── vis.json
-└── README.md
+- **M3T-UAV Dataset**: a large-scale, strictly aligned triplet dataset (`UAV visible / UAV infrared / satellite map`) with diverse scenes and temporal gaps.
+- **LoFTDF Framework**: a semi-dense matching model with redesigned coarse assignment and dual-deformation field (DDF) based fine alignment.
+- **Evaluation Protocols**: localization-oriented metrics including GeoAUC@T and VPS.
+
+![The proposed LoFTDF architecture.](fig04.png)
+
+*The proposed LoFTDF architecture.*
+
+## Performance Highlights
+
+LoFTDF reports strong performance on M3T-UAV:
+
+- **Visible -> Satellite**: VPS = **0.9036**
+- **Infrared -> Satellite**: VPS = **0.4421**
+
+## M3T-UAV Dataset
+
+For detailed M3T-UAV dataset documentation, see `data/m3t/README_m3t.md`.
+
+## Training and Testing Pipeline
+
+The recommended workflow is:
+
+- Step 1: pre-train on **M3T**
+- Step 2: fine-tune on **MegaDepth**
+- Step 3: evaluate on **M3T test set** for both `uav_vis -> map` and `uav_ir -> map`
+
+Quick commands:
+
+```bash
+python train.py --stage pretrain
+python train.py --stage finetune
+python test.py configs/data/m3t_test.py configs/loftdf/test.py --ckpt_path weights/loftdf_pretrain.ckpt
 ```
 
-At the sequence level, each folder contains UAV image data and corresponding satellite map tiles. In the current organization:
+Recommended scripts:
 
-- `uav_ir/`: infrared UAV images.
-- `uav_vis/`: visible-spectrum UAV images.
-- `map/`: satellite remote sensing imagery.
+```bash
+bash scripts/reproduce_train/pretrain_m3t.sh
+bash scripts/reproduce_train/finetune_megadepth.sh
+bash scripts/reproduce_test/test_m3t.sh
+```
 
-The root-level annotation files `ir.json` and `vis.json` store merged annotations for infrared and visible UAV imagery, respectively.
+## M3T-UAV Dataset Notes
 
+M3T-UAV is organized into training and testing splits, with modality-specific folders (`uav_vis`, `uav_ir`, `map`) and merged annotation files (`vis.json`, `ir.json`). The annotations include image paths, geometric transformation matrices, and localization-related metadata.
 
-## Dataset Download
+The dataset is intended for research on:
 
-The current dataset release can be downloaded via Baidu Netdisk:
+- UAV-to-satellite matching
+- cross-modal geometric registration
+- robust geolocalization under scene and temporal changes
 
-- **Baidu Netdisk**: [https://pan.baidu.com/s/1_8aw2ZQ8Xg24V29aBnwV3w?pwd=shpn]
-<<<<<<< HEAD
-=======
+## Resources
 
->>>>>>> ed3ca58 (111)
-
-## Annotation Contents
-
-### Training Set
-
-The training set contains the following core fields:
-
-- `uav_img_path`: relative paths to UAV images within a sequence.
-- `map_path`: relative paths to satellite map tiles.
-- `pose`: `yaw`, `pitch`, and `roll` are defined under the NED coordinate system and are expressed in degrees.
-- `H_matrix`: the projection matrix from UAV image space to map space.
-
-### Testing Set
-
-The testing set contains all fields included in the training set, together with additional evaluation-oriented annotations:
-
-- `Geo_gt`: UAV RTK-based geographic ground-truth positions with centimeter-level accuracy.
-- `relative_alt`: depth-related elevation information of the UAV image with respect to the ground surface.
-- `attributes`: multi-label scene annotations designed to better capture the compositional nature of real-world environments.
-
-## Field Definitions
-
-- **UAV imagery**: UAV observations are provided in both infrared and visible modalities, enabling cross-modal and modality-specific evaluation.
-- **Satellite map**: the map imagery is north-south aligned remote sensing imagery.
-- **Pose**: `yaw`, `pitch`, and `roll` under the NED.
-- **Homography / projection matrix**: `H_matrix` denotes the geometric projection from the UAV image to the corresponding map plane.
-- **Attributes**: scene semantics are annotated using a multi-label strategy rather than a single-label taxonomy.
-
-## Intended Use
-
-This dataset is intended for research on:
-
-- UAV-to-satellite image matching,
-- geometric registration between airborne and overhead imagery,
-- multimodal localization with infrared and visible UAV observations,
-- robust localization across diverse scene attributes.
-
-## Remarks
-
-If you use this repository in academic research, please cite the corresponding paper once the publication information becomes available.
+- Paper: *M3T-UAV: Vision-Based UAV Geolocalization in Multi-Modal, Multi-Scene and Multi-Temporal Scenarios*
+- Code repository: [GitHub Repository](https://github.com/JinHaiXu0322/M3T-UAV)
+- Dataset path in this repo: `data/m3t/`
 
 ## License
 
-This dataset is released for academic research purposes only. For commercial use, please contact the authors.
+This dataset and codebase are for academic research use. For commercial use, please contact the authors.
