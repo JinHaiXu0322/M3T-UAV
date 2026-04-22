@@ -40,7 +40,7 @@ Quick commands:
 ```bash
 python train.py --stage pretrain
 python train.py --stage finetune
-python test.py configs/data/m3t_test.py configs/loftdf/test.py --ckpt_path weights/loftdf_pretrain.ckpt
+python test.py configs/data/m3t_test.py configs/loftdf/test.py --ckpt_path 
 ```
 
 Recommended scripts:
