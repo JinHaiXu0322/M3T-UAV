@@ -1,4 +1,4 @@
-# M3T-UAV and LoFTDF
+# M3T-UAV: Vision-Based UAV Geolocalization in Multi-Modal, Multi-Scene and Multi-Temporal Scenarios
 
 This repository provides the **M3T-UAV dataset** and the **LoFTDF** framework for UAV visual geolocalization under multi-modal, multi-scene, and multi-temporal conditions.
 
