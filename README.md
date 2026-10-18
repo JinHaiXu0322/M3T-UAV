@@ -24,30 +24,6 @@ LoFTDF reports strong performance on M3T-UAV:
 - **Infrared -> Satellite**: VPS = **0.4421**
 
 
-## Training and Testing Pipeline
-
-The recommended workflow is:
-
-- Step 1: pre-train on **M3T**
-- Step 2: fine-tune on **MegaDepth**
-- Step 3: evaluate on **M3T test set** for both `uav_vis -> map` and `uav_ir -> map`
-
-Quick commands:
-
-```bash
-python train.py --stage pretrain
-python train.py --stage finetune
-python test.py configs/data/m3t_test.py configs/loftdf/test.py --ckpt_path 
-```
-
-Recommended scripts:
-
-```bash
-bash scripts/reproduce_train/pretrain_m3t.sh
-bash scripts/reproduce_train/finetune_megadepth.sh
-bash scripts/reproduce_test/test_m3t.sh
-```
-
 ## M3T-UAV Dataset 
 
 M3T-UAV is organized into training and testing splits, with modality-specific folders (`uav_vis`, `uav_ir`, `map`) and merged annotation files (`vis.json`, `ir.json`). The annotations include image paths, geometric transformation matrices, and localization-related metadata.
