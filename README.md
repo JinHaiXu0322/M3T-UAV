@@ -36,7 +36,7 @@ The dataset is intended for research on:
 
 For detailed M3T-UAV dataset documentation, see `data/m3t/README_m3t.md`.
 
-# Dataset Availability
+### Dataset Availability
 
 Currently, a subset of the training set and the complete test set have been made publicly available to support research and benchmarking.
 
