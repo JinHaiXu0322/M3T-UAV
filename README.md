@@ -38,7 +38,7 @@ For detailed M3T-UAV dataset documentation, see `data/m3t/README_m3t.md`.
 
 ### Dataset Availability
 
-Currently, a subset of the training set and the complete test set have been made publicly available to support research and benchmarking.
+Currently, part subset of the training set and the complete test set have been made publicly available to support research and benchmarking.
 
 Due to ongoing project requirements and data release arrangements, the full training set is not yet available for public distribution. We plan to release the remaining data in a future update as the project progresses.
 
