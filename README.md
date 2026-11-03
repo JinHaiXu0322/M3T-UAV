@@ -35,6 +35,10 @@ The dataset is intended for research on:
 - robust geolocalization under scene and temporal changes
 
 For detailed M3T-UAV dataset documentation, see `data/m3t/README_m3t.md`.
+We have updated the M3T-UAV dataset by adding the corresponding DEM map for each submap. 
+The current dataset release can be downloaded via Baidu Netdisk:
+- **Baidu Netdisk**: [Download Link](https://pan.baidu.com/s/1QLIX-fV52vjsi-0Pz8_idw?pwd=bbmw)
+
 
 ### Dataset Availability
 
