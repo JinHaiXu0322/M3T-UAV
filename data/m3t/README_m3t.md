@@ -51,13 +51,6 @@ At the sequence level, each folder contains UAV image data and corresponding sat
 The root-level annotation files `ir.json` and `vis.json` store merged annotations for infrared and visible UAV imagery, respectively.
 
 
-## Dataset Download
-
-The current dataset release can be downloaded via Baidu Netdisk:
-
-- **Baidu Netdisk**: [https://pan.baidu.com/s/1_8aw2ZQ8Xg24V29aBnwV3w?pwd=shpn]
-
-
 ## Annotation Contents
 
 ### Training Set
