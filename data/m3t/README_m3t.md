@@ -46,6 +46,7 @@ At the sequence level, each folder contains UAV image data and corresponding sat
 - `uav_ir/`: infrared UAV images.
 - `uav_vis/`: visible-spectrum UAV images.
 - `map/`: satellite remote sensing imagery.
+- `dem/`: DEM maps corresponding to satellite maps
 
 The root-level annotation files `ir.json` and `vis.json` store merged annotations for infrared and visible UAV imagery, respectively.
 
